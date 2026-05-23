@@ -4,225 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jawad web page</title>
+    <!-- استدعاء خط كايرو الفخم من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ألوان وتصميم مودرن ومريح للعين */
+        /* إعدادات الألوان والتصميم العام للموقع */
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #38bdf8;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-main: #0b0f19;
+            --bg-card: #131c2e;
+            --accent-color: #00f2fe;
+            --accent-purple: #4facfe;
+            --text-color: #ffffff;
+            --text-muted: #a0aec0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-main);
             color: var(--text-color);
-            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* الهيدر وشريط التنقل */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 10px;
             display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header .logo {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        header nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* القسم الرئيسي (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        /* كرت بروفايل احترافي */
-        .profile-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
         }
 
-        /* تأثير ضوئي خلف الكرت */
-        .profile-card::before {
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-color));
+            color: #000;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+        }
+
+        /* أقسام المحتوى */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2.section-title::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
         }
 
-        .avatar-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+        /* شبكة المشاريع */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        .project-card {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
+            cursor: pointer;
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.1);
         }
 
-        .title {
+        .project-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
             color: var(--accent-color);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
         }
 
-        .bio {
+        .project-card p {
             color: var(--text-muted);
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 30px;
         }
 
-        /* أزرار تفاعلية */
-        .btn {
-            background: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--accent-color);
+        /* قسم المهارات */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.05);
             padding: 10px 25px;
             border-radius: 30px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* لوحة التحكم السرية للمقالب */
-        .secret-panel {
-            display: none;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--text-muted);
-            text-align: right;
-        }
-
-        .secret-panel label {
-            font-size: 12px;
+        .skill-badge:hover {
+            background: rgba(0, 242, 254, 0.1);
+            border-color: var(--accent-color);
             color: var(--accent-color);
-            display: block;
-            margin-top: 10px;
         }
 
-        .secret-panel input, .secret-panel textarea {
-            width: 100%;
-            padding: 8px;
-            background: #0f172a;
-            border: 1px solid var(--text-muted);
-            border-radius: 5px;
-            color: #fff;
-            margin-top: 5px;
-            font-size: 13px;
+        /* الفوتر (أسفل الصفحة) */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
         }
-
-        /* زر سري جداً زاوية الصفحة */
-        .secret-trigger {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-            opacity: 0.1;
-        }
-        .secret-trigger:hover { opacity: 0.5; }
     </style>
 </head>
 <body>
 
-    <div class="profile-card">
-        <div class="avatar-container">
-            <!-- يمكنك وضع رابط صورتك هنا، حالياً وضعت صورة افتراضية رائعة -->
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150" alt="Avatar" class="avatar" id="user-img">
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <div class="logo">جواد | JB</div>
+        <nav>
+            <a href="#home">الرئيسية</a>
+            <a href="#projects">المشاريع</a>
+            <a href="#skills">المهارات</a>
+        </nav>
+    </header>
+
+    <!-- القسم التعريفي الرئيسي -->
+    <section class="hero" id="home">
+        <h1>أهلاً بك، أنا <span>جواد</span></h1>
+        <p>مطور ويب برمجيات طموح وشغوف بتطوير المواقع والتطبيقات الذكية. أهتم بكتابة كود نظيف وتصميم واجهات مستخدم مذهلة وتفاعلية.</p>
+        <a href="#projects" class="cta-btn">تصفح مشاريعي</a>
+    </section>
+
+    <!-- قسم المشاريع البرمجية المنجزة -->
+    <section class="container" id="projects">
+        <h2 class="section-title">مشاريعي البرمجية</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card" onclick="projectAlert('موقع الويب الشخصي')">
+                <h3>موقع الويب المتكامل</h3>
+                <p>تطوير وبناء موقع شخصي متكامل ومتجاوب بالكامل يعرض المهارات والمشاريع المنجزة باستخدام تقنيات الويب الأساسية بتصميم عصري جذاب.</p>
+            </div>
+
+            <div class="project-card" onclick="projectAlert('تطبيق الآلة الحاسبة')">
+                <h3>تطبيق الآلة الحاسبة الذكية</h3>
+                <p>برمجة سكربت وتطبيق آلة حاسبة متقدمة تؤدي العمليات الحسابية المتعددة بكفاءة عالية وبناء منطق برمجي متميز مدعوم بتأخير زمني تفاعلي للمدخلات.</p>
+            </div>
+
+            <div class="project-card" onclick="projectAlert('تطوير عوالم الألعاب والـ Command Blocks')">
+                <h3>إدارة وتطوير عوالم الألعاب</h3>
+                <p>تجربة واسعة في تطوير سكربتات الألعاب، التعامل مع الـ Command Blocks، إدارة البيانات، ونقل النسخ الاحتياطية وإصلاح ملفات العوالم التقنية بنجاح.</p>
+            </div>
+
         </div>
-        
-        <h1 id="user-name">جواد البدري</h1>
-        <div class="title" id="user-title">مطور ويب محترف وعبقري برمجيات</div>
-        <p class="bio" id="user-bio">أهلاً بك في موقعي الشخصي! أنا مبرمج شغوف بتعلم التقنيات الحديثة وبناء واجهات مستخدم مذهلة وتفاعلية باستخدام أحدث التقنيات مثل HTML5, CSS3, و JavaScript المتطورة.</p>
-        
-        <button class="btn" onclick="celebrate()">اضغط لمفاجأة عمي!</button>
+    </section>
 
-        <!-- لوحة التحكم السرية اللي ما يشوفها إلا أنت -->
-        <div class="secret-panel" id="secret-div">
-            <h4 style="color: #ef4444; text-align:center;">لوحة التحكم السرية 🥷</h4>
-            
-            <label>الاسم:</label>
-            <input type="text" id="edit-name" value="جواد البدري" oninput="updateProfile()">
-            
-            <label>اللقب البرمجي:</label>
-            <input type="text" id="edit-title" value="مطور ويب محترف وعبقري برمجيات" oninput="updateProfile()">
-            
-            <label>الوصف (البيو):</label>
-            <textarea id="edit-bio" rows="3" oninput="updateProfile()">أهلاً بك في موقعي الشخصي! أنا مبرمج شغوف بتعلم التقنيات الحديثة وبناء واجهات مستخدم مذهلة وتفاعلية باستخدام أحدث التقنيات مثل HTML5, CSS3, و JavaScript المتطورة.</textarea>
-            
-            <label>رابط صورة جديدة (اختياري):</label>
-            <input type="text" id="edit-img" placeholder="ضع رابط الصورة هنا" oninput="updateProfile()">
+    <!-- قسم المهارات التقنية -->
+    <section class="container" id="skills">
+        <h2 class="section-title">المهارات التقنية</h2>
+        <div class="skills-container">
+            <div class="skill-badge">HTML5</div>
+            <div class="skill-badge">CSS3</div>
+            <div class="skill-badge">JavaScript (ES6)</div>
+            <div class="skill-badge">Python البرمجية</div>
+            <div class="skill-badge">تطوير الويب المتجاوب</div>
+            <div class="skill-badge">المنطق البرمجي والألعاب</div>
         </div>
+    </section>
 
-        <!-- زر مخفي بالزاوية لتشغيل اللوحة -->
-        <div class="secret-trigger" onclick="toggleSecretPanel()"></div>
-    </div>
+    <!-- تذييل الصفحة -->
+    <footer>
+        <p>صُنع بكل شغف بواسطة جواد © 2026</p>
+    </footer>
 
-    <!-- تأثيرات الـ JavaScript التفاعلية -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <!-- سكربت الـ JavaScript التفاعلي الحقيقي -->
     <script>
-        // تأثير الاحتفال (القصاصات الملونة المبهجة) عند ضغط الزر
-        function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 80,
-                origin: { y: 0.6 }
-            });
+        // دالة تفاعلية حقيقية تظهر رسالة منبثقة عند الضغط على أي كرت مشروع
+        function projectAlert(projectName) {
+            alert("لقد قمت باختيار تفاصيل مشروع: " + projectName + "\n\nتم بناء هذا المشروع وتطويره بالكامل برمجياً بكود نظيف ومرتب!");
         }
 
-        // إظهار وإخفاء لوحة التحكم السرية
-        function toggleSecretPanel() {
-            const panel = document.getElementById('secret-div');
-            if (panel.style.display === 'none' || panel.style.display === '') {
-                panel.style.display = 'block';
+        // حركة بسيطة واحترافية: تغيير لون الهيدر عند النزول بالصفحة (Scroll)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = '#0b0f19';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
             } else {
-                panel.style.display = 'none';
+                header.style.background = 'rgba(11, 15, 25, 0.8)';
+                header.style.boxShadow = 'none';
             }
-        }
-
-        // تحديث البيانات مباشرة على الشاشة فوراً عند الكتابة في اللوحة السرية
-        function updateProfile() {
-            document.getElementById('user-name').innerText = document.getElementById('edit-name').value;
-            document.getElementById('user-title').innerText = document.getElementById('edit-title').value;
-            document.getElementById('user-bio').innerText = document.getElementById('edit-bio').value;
-            
-            const imgUrl = document.getElementById('edit-img').value;
-            if(imgUrl.trim() !== "") {
-                document.getElementById('user-img').src = imgUrl;
-            }
-        }
+        });
     </script>
 </body>
 </html>
